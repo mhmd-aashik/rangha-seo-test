@@ -2,6 +2,7 @@ import TrandingSlides from "@/components/blog/TrandingSlides";
 import { fetchBlogsById } from "@/lib/fetchBlogs";
 import { icons } from "lucide-react";
 import Image from "next/image";
+import { title } from "process";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -18,8 +19,8 @@ export async function generateMetadata({ params }: any) {
   return {
     title: metatitle,
     description: metadescription,
-    openGrapah: {
-      images: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+    twitter: {
+      card: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
     },
   };
 }
