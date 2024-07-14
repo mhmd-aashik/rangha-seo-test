@@ -18,9 +18,14 @@ export async function generateMetadata({ params }: any) {
   return {
     title: metatitle,
     description: metadescription,
-    twitter: {
-      card: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
-    },
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+        width: 1200,
+        height: 630,
+        alt: metatitle,
+      },
+    ],
     openGraph: {
       title: metatitle,
       description: metadescription,
@@ -30,6 +35,15 @@ export async function generateMetadata({ params }: any) {
           width: 1200,
           height: 630,
           alt: metatitle,
+        },
+      ],
+    },
+    twitter: {
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+          width: 1200,
+          height: 630,
         },
       ],
     },
