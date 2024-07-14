@@ -68,16 +68,6 @@ export async function generateMetadata({ params }: any) {
         },
       ],
     },
-    linkedin: {
-      images: [
-        {
-          url: fullImageUrl,
-          width: 1200,
-          height: 630,
-          alt: metatitle,
-        },
-      ],
-    },
   };
 }
 
