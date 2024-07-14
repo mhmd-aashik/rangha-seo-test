@@ -15,7 +15,6 @@ export async function generateMetadata({ params }: any) {
   const { metatitle, metadescription } = attributes;
   const imageData = attributes.desktopView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
-  console.log(`${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`);
   return {
     title: metatitle,
     description: metadescription,
