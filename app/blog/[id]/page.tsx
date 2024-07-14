@@ -30,7 +30,6 @@ export async function generateMetadata({ params }: any) {
         width: 1200,
         height: 630,
         alt: metatitle,
-        title: metatitle,
       },
     ],
     openGraph: {
@@ -51,7 +50,6 @@ export async function generateMetadata({ params }: any) {
           url: fullImageUrl,
           width: 1200,
           height: 630,
-          alt: metatitle,
         },
       ],
     },
