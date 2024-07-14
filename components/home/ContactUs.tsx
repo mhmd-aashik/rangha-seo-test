@@ -51,7 +51,7 @@ const ContactUs = () => {
       </div>
       <div className="absolute top-0 left-0 -z-50">
         <Image
-          src="/assets/vector/vector8.png"
+          src="/assets/vector/Vector8.png"
           alt="vector8"
           width={312}
           height={270}

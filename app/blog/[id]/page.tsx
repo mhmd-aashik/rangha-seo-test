@@ -1,7 +1,6 @@
 import TrandingSlides from "@/components/blog/TrandingSlides";
 import { fetchBlogs, fetchBlogsById } from "@/lib/fetchBlogs";
 import { icons } from "lucide-react";
-import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -15,19 +14,23 @@ export async function generateMetadata({ params }: any) {
   const imageData = attributes.phoneView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
 
-  const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
+  const primaryImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
+  const fallbackImageUrl = "https://example.com/default-image.jpg"; // Replace with your fallback image URL
 
   // Logging for debugging
   console.log("Meta Title:", metatitle);
   console.log("Meta Description:", metadescription);
-  console.log("Image URL:", fullImageUrl);
+  console.log("Primary Image URL:", primaryImageUrl);
+  console.log("Fallback Image URL:", fallbackImageUrl);
+
+  const finalImageUrl = imageUrl ? primaryImageUrl : fallbackImageUrl;
 
   return {
     title: metatitle,
     description: metadescription,
     images: [
       {
-        url: fullImageUrl,
+        url: finalImageUrl,
         width: 1200,
         height: 630,
         alt: metatitle,
@@ -38,7 +41,7 @@ export async function generateMetadata({ params }: any) {
       description: metadescription,
       images: [
         {
-          url: fullImageUrl,
+          url: finalImageUrl,
           width: 1200,
           height: 630,
           alt: metatitle,
@@ -48,7 +51,7 @@ export async function generateMetadata({ params }: any) {
     twitter: {
       images: [
         {
-          url: fullImageUrl,
+          url: finalImageUrl,
           width: 1200,
           height: 630,
         },
