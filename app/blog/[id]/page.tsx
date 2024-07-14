@@ -12,14 +12,9 @@ export async function generateMetadata({ params }: any) {
   const { attributes } = results.data.data;
   const { metatitle, metadescription } = attributes;
   const imageData = attributes.phoneView.data.attributes.formats;
-  const imageUrl = imageData?.large?.url;
+  const imageUrl = imageData?.medium?.url;
 
   const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
-
-  // Logging for debugging
-  console.log("Meta Title:", metatitle);
-  console.log("Meta Description:", metadescription);
-  console.log("Image URL:", fullImageUrl);
 
   return {
     title: metatitle,
@@ -50,6 +45,17 @@ export async function generateMetadata({ params }: any) {
           url: fullImageUrl,
           width: 1200,
           height: 630,
+          alt: metatitle,
+        },
+      ],
+    },
+    linkedin: {
+      images: [
+        {
+          url: fullImageUrl,
+          width: 1200,
+          height: 630,
+          alt: metatitle,
         },
       ],
     },
