@@ -11,14 +11,17 @@ export async function generateMetadata({ params }: any) {
   const results: any = await fetchBlogsById({ id: params.id });
   const { attributes } = results.data.data;
   const { metatitle, metadescription } = attributes;
-  const imageData = attributes.phoneView.data.attributes.formats;
+  const imageData = attributes.desktopView.data.attributes.formats;
   const imageUrl = imageData?.medium?.url;
 
   const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
 
+  console.log(fullImageUrl);
+
   return {
     title: metatitle,
     description: metadescription,
+    type: "website",
     images: [
       {
         url: fullImageUrl,
@@ -30,6 +33,7 @@ export async function generateMetadata({ params }: any) {
     openGraph: {
       title: metatitle,
       description: metadescription,
+      type: "website",
       images: [
         {
           url: fullImageUrl,
@@ -38,6 +42,21 @@ export async function generateMetadata({ params }: any) {
           alt: metatitle,
         },
       ],
+    },
+    og: {
+      openGraph: {
+        title: metatitle,
+        description: metadescription,
+        type: "website",
+        images: [
+          {
+            url: fullImageUrl,
+            width: 1200,
+            height: 630,
+            alt: metatitle,
+          },
+        ],
+      },
     },
     twitter: {
       images: [
