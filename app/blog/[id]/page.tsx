@@ -14,26 +14,23 @@ export async function generateMetadata({ params }: any) {
   const imageData = attributes.phoneView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
 
-  const primaryImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
-  const fallbackImageUrl = "https://example.com/default-image.jpg"; // Replace with your fallback image URL
+  const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
 
   // Logging for debugging
   console.log("Meta Title:", metatitle);
   console.log("Meta Description:", metadescription);
-  console.log("Primary Image URL:", primaryImageUrl);
-  console.log("Fallback Image URL:", fallbackImageUrl);
-
-  const finalImageUrl = imageUrl ? primaryImageUrl : fallbackImageUrl;
+  console.log("Image URL:", fullImageUrl);
 
   return {
     title: metatitle,
     description: metadescription,
     images: [
       {
-        url: finalImageUrl,
+        url: fullImageUrl,
         width: 1200,
         height: 630,
         alt: metatitle,
+        title: metatitle,
       },
     ],
     openGraph: {
@@ -41,7 +38,7 @@ export async function generateMetadata({ params }: any) {
       description: metadescription,
       images: [
         {
-          url: finalImageUrl,
+          url: fullImageUrl,
           width: 1200,
           height: 630,
           alt: metatitle,
@@ -51,9 +48,10 @@ export async function generateMetadata({ params }: any) {
     twitter: {
       images: [
         {
-          url: finalImageUrl,
+          url: fullImageUrl,
           width: 1200,
           height: 630,
+          alt: metatitle,
         },
       ],
     },
