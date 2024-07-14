@@ -13,13 +13,25 @@ export async function generateMetadata({ params }: any) {
   const results: any = await fetchBlogsById({ id: params.id });
   const { attributes } = results.data.data;
   const { metatitle, metadescription } = attributes;
-  const imageData = attributes.desktopView.data.attributes.formats;
+  const imageData = attributes.phoneView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
   return {
     title: metatitle,
     description: metadescription,
     twitter: {
       card: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+    },
+    openGraph: {
+      title: metatitle,
+      description: metadescription,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+          width: 1200,
+          height: 630,
+          alt: metatitle,
+        },
+      ],
     },
   };
 }
