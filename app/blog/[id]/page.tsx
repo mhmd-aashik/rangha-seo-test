@@ -8,14 +8,19 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
 export async function generateMetadata({ params }: any) {
-  const results: any = await fetchBlogsById({ id: params.id });
+  console.log(params);
 
+  const results: any = await fetchBlogsById({ id: params.id });
   const { attributes } = results.data.data;
   const { metatitle, metadescription } = attributes;
-
+  const imageData = attributes.desktopView.data.attributes.formats;
+  const imageUrl = imageData?.large?.url;
   return {
     title: metatitle,
     description: metadescription,
+    openGrapah: {
+      images: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+    },
   };
 }
 
