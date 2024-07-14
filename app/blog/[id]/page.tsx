@@ -1,6 +1,7 @@
 import TrandingSlides from "@/components/blog/TrandingSlides";
-import { fetchBlogsById } from "@/lib/fetchBlogs";
+import { fetchBlogs, fetchBlogsById } from "@/lib/fetchBlogs";
 import { icons } from "lucide-react";
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -8,19 +9,25 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
 export async function generateMetadata({ params }: any) {
-  console.log(params);
-
   const results: any = await fetchBlogsById({ id: params.id });
   const { attributes } = results.data.data;
   const { metatitle, metadescription } = attributes;
   const imageData = attributes.phoneView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
+
+  const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
+
+  // Logging for debugging
+  console.log("Meta Title:", metatitle);
+  console.log("Meta Description:", metadescription);
+  console.log("Image URL:", fullImageUrl);
+
   return {
     title: metatitle,
     description: metadescription,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+        url: fullImageUrl,
         width: 1200,
         height: 630,
         alt: metatitle,
@@ -31,7 +38,7 @@ export async function generateMetadata({ params }: any) {
       description: metadescription,
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+          url: fullImageUrl,
           width: 1200,
           height: 630,
           alt: metatitle,
@@ -41,7 +48,7 @@ export async function generateMetadata({ params }: any) {
     twitter: {
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`,
+          url: fullImageUrl,
           width: 1200,
           height: 630,
         },
