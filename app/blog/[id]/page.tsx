@@ -2,7 +2,6 @@ import TrandingSlides from "@/components/blog/TrandingSlides";
 import { fetchBlogsById } from "@/lib/fetchBlogs";
 import { icons } from "lucide-react";
 import Image from "next/image";
-import { title } from "process";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -16,6 +15,7 @@ export async function generateMetadata({ params }: any) {
   const { metatitle, metadescription } = attributes;
   const imageData = attributes.desktopView.data.attributes.formats;
   const imageUrl = imageData?.large?.url;
+  console.log(`${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`);
   return {
     title: metatitle,
     description: metadescription,
