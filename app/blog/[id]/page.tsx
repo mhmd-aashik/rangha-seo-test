@@ -9,57 +9,57 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
-// export async function generateMetadata({ params }: any) {
-//   const results: any = await fetchBlogsById({ id: params.id });
-//   const { attributes } = results.data.data;
-//   const { metatitle, metadescription } = attributes;
-//   const imageData = attributes.desktopView.data.attributes.formats;
-//   const imageUrl = imageData?.medium?.url;
+export async function generateMetadata({ params }: any) {
+  const results: any = await fetchBlogsById({ id: params.id });
+  const { attributes } = results.data.data;
+  const { metatitle, metadescription } = attributes;
+  const imageData = attributes.desktopView.data.attributes.formats;
+  const imageUrl = imageData?.medium?.url;
 
-//   const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
+  const fullImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_FILE}${imageUrl}`;
 
-//   return {
-//     title: metatitle,
-//     description: metadescription,
-//     type: "website",
-//     images: [
-//       {
-//         url: fullImageUrl,
-//         width: 1200,
-//         height: 630,
-//         alt: metatitle,
-//       },
-//     ],
-//     openGraph: {
-//       title: metatitle,
-//       description: metadescription,
-//       type: "website",
-//       images: [
-//         {
-//           url: fullImageUrl,
-//           width: 1200,
-//           height: 630,
-//           alt: metatitle,
-//         },
-//       ],
-//     },
-//     og: {
-//       openGraph: {
-//         title: metatitle,
-//         description: metadescription,
-//         type: "website",
-//         images: [
-//           {
-//             url: fullImageUrl,
-//             width: 1200,
-//             height: 630,
-//             alt: metatitle,
-//           },
-//         ],
-//       },
-//     },
-//   };
-// }
+  return {
+    title: metatitle,
+    description: metadescription,
+    type: "website",
+    images: [
+      {
+        url: fullImageUrl,
+        width: 1200,
+        height: 630,
+        alt: metatitle,
+      },
+    ],
+    openGraph: {
+      title: metatitle,
+      description: metadescription,
+      type: "website",
+      images: [
+        {
+          url: fullImageUrl,
+          width: 1200,
+          height: 630,
+          alt: metatitle,
+        },
+      ],
+    },
+    og: {
+      openGraph: {
+        title: metatitle,
+        description: metadescription,
+        type: "website",
+        images: [
+          {
+            url: fullImageUrl,
+            width: 1200,
+            height: 630,
+            alt: metatitle,
+          },
+        ],
+      },
+    },
+  };
+}
 
 // type Props = {
 //   params: { id: string };
