@@ -3,7 +3,6 @@ import { fetchBlogs, fetchBlogsById } from "@/lib/fetchBlogs";
 import { icons } from "lucide-react";
 import { ResolvingMetadata, Metadata } from "next";
 import Image from "next/image";
-import { Props } from "next/script";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -12,7 +11,7 @@ import remarkGfm from "remark-gfm";
 export async function generateMetadata({ params }: any) {
   const results: any = await fetchBlogsById({ id: params.id });
   const { attributes } = results.data.data;
-  const { metatitle, metadescription } = attributes;
+  const { metatitle, metakeyword, metaauthor, metadescription } = attributes;
   const imageData = attributes.desktopView.data.attributes.formats;
   const imageUrl = imageData?.medium?.url;
 
@@ -22,6 +21,10 @@ export async function generateMetadata({ params }: any) {
     title: metatitle,
     description: metadescription,
     type: "website",
+    applicationName: "Ranga Technology",
+    authors: [{ name: metaauthor }],
+    keywords: [metakeyword],
+
     images: [
       {
         url: fullImageUrl,
@@ -58,36 +61,11 @@ export async function generateMetadata({ params }: any) {
         ],
       },
     },
+    twitter: {
+      card: "../../opengraph-image.png",
+    },
   };
 }
-
-// type Props = {
-//   params: { id: string };
-//   searchParams: { [key: string]: string | string[] | undefined };
-// };
-// export async function generateMetadata(
-//   { params, searchParams }: Props,
-//   parent: ResolvingMetadata
-// ): Promise<Metadata> {
-//   // read route params
-//   const id = params.id;
-
-//   // fetch data
-//   const product = await fetch(
-//     `http://92.205.233.9:1338/api/blogs/${id}?populate=*`
-//   ).then((res) => res.json());
-  
-
-//   // optionally access and extend (rather than replace) parent metadata
-//   const previousImages = (await parent).openGraph?.images || [];
-
-//   return {
-//     title: product.title,
-//     openGraph: {
-//       images: ["/some-specific-page-image.jpg", ...previousImages],
-//     },
-//   };
-// }
 
 export const revalidate = 0;
 
