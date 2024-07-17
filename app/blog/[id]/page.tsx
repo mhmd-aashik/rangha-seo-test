@@ -37,6 +37,9 @@ export async function generateMetadata({ params }: any) {
       title: metatitle,
       description: metadescription,
       type: "website",
+      applicationName: "Ranga Technology",
+      authors: [{ name: metaauthor }],
+      keywords: [metakeyword],
       images: [
         {
           url: fullImageUrl,
@@ -45,24 +48,6 @@ export async function generateMetadata({ params }: any) {
           alt: metatitle,
         },
       ],
-    },
-    og: {
-      openGraph: {
-        title: metatitle,
-        description: metadescription,
-        type: "website",
-        images: [
-          {
-            url: fullImageUrl,
-            width: 1200,
-            height: 630,
-            alt: metatitle,
-          },
-        ],
-      },
-    },
-    twitter: {
-      card: "../../opengraph-image.png",
     },
   };
 }
